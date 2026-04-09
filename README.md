@@ -15,4 +15,4 @@ Agent Skill.
     export OPENAI_API_MODEL=<YOUR MODEL>
     ./mvnw spring-boot:run
     ```
-3. Ask a question like `use the pdf skill to create a pdf that contains the current directory listing`
+2. Ask a question like `use the pdf skill to create a pdf that contains the current directory listing`
