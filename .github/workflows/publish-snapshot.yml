@@ -39,10 +39,12 @@ jobs:
           git config user.email "actions@github.com"
 
       - name: Publish snapshot
-        run: ./mvnw clean deploy -B -DskipTests
+        run: ./mvnw clean deploy -B -DskipTests -P release
         env:
           MAVEN_USERNAME: ${{ secrets.MAVEN_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.MAVEN_PASSWORD }}
+          GPG_SECRET_KEY: ${{ secrets.GPG_SECRET_KEY }}
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
 
       - name: Notify on failure
         if: failure()
