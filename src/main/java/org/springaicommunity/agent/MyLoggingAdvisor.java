@@ -15,19 +15,14 @@ import java.util.regex.Pattern;
 
 public class MyLoggingAdvisor implements BaseAdvisor {
 
-    private final int order;
-
-    public final boolean showSystemMessage;
-
-    public final boolean showAvailableTools;
-
-    public final boolean showUserText;
-
-    public final boolean showAssistantText;
-
-
     private static final Pattern API_KEY_PATTERN = Pattern.compile("(?i)(api[_-]?key|key|token|secret|password|bearer)\\s*[:=]\\s*[\"']?([a-zA-Z0-9]{20,})[\"']?");
     private static final String REDACTED_VALUE = "[REDACTED]";
+
+    private final int order;
+    private final boolean showSystemMessage;
+    private final boolean showAvailableTools;
+    private final boolean showUserText;
+    private final boolean showAssistantText;
 
     private MyLoggingAdvisor(int order, boolean showSystemMessage, boolean showAvailableTools, boolean showUserText, boolean showAssistantText) {
         this.order = order;
@@ -102,10 +97,8 @@ public class MyLoggingAdvisor implements BaseAdvisor {
                 }
             }
 
-            if (this.showAssistantText && message.getText() != null) {
-                if (StringUtils.hasText(message.getText())) {
-                    sb.append("\n - TEXT: " + first(message.getText(), 2000));
-                }
+            if (this.showAssistantText && StringUtils.hasText(message.getText())) {
+                sb.append("\n - TEXT: " + first(message.getText(), 2000));
             }
         }
 
@@ -122,7 +115,7 @@ public class MyLoggingAdvisor implements BaseAdvisor {
     }
 
     private String redactSensitiveData(String text) {
-        if (text == null || text.isEmpty()) {
+        if (text.isEmpty()) {
             return text;
         }
         return API_KEY_PATTERN.matcher(text).replaceAll("$1=" + REDACTED_VALUE);
@@ -135,13 +128,9 @@ public class MyLoggingAdvisor implements BaseAdvisor {
     public static class Builder {
 
         private int order = 0;
-
         private boolean showSystemMessage = true;
-
         private boolean showAvailableTools = true;
-
         private boolean showAssistantText = true;
-
         private boolean showUserText = true;
 
         public Builder order(int order) {
@@ -170,9 +159,8 @@ public class MyLoggingAdvisor implements BaseAdvisor {
         }
 
         public MyLoggingAdvisor build() {
-            MyLoggingAdvisor advisor = new MyLoggingAdvisor(this.order, this.showSystemMessage,
+            return new MyLoggingAdvisor(this.order, this.showSystemMessage,
                     this.showAvailableTools, this.showUserText, this.showAssistantText);
-            return advisor;
         }
 
     }

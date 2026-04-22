@@ -27,38 +27,45 @@ public class Application {
             ChatClient.Builder chatClientBuilder,
             @Value("${agent.skills.paths}") List<Resource> skillPaths
     ) {
+        ChatClient chatClient = buildChatClient(chatClientBuilder, skillPaths);
+        return args -> runInteractiveLoop(chatClient);
+    }
 
-        return args -> {
-            ChatClient chatClient = chatClientBuilder
-                    .defaultSystem("When calling Skills, the toolname is \"Skill\"")
-                    .defaultToolCallbacks(
-                            SkillsTool.builder().addSkillsResources(skillPaths).build()
-                    )
-                    // SECURITY WARNING: ShellTools allows arbitrary command execution.
-                    // Do not use in production without command whitelisting or proper access control.
-                    .defaultTools(
-                            ShellTools.builder().build(),
-                            FileSystemTools.builder().build()
-                    )
-                    .defaultAdvisors(
-                            ToolCallAdvisor.builder()
-                                    .conversationHistoryEnabled(true)
-                                    .build(),
-                            MyLoggingAdvisor.builder()
-                                    .showAvailableTools(true)
-                                    .showSystemMessage(true)
-                                    .build()
-                    )
-                    .build();
+    private ChatClient buildChatClient(
+            ChatClient.Builder chatClientBuilder,
+            List<Resource> skillPaths
+    ) {
+        return chatClientBuilder
+                .defaultSystem("When calling Skills, the toolname is \"Skill\"")
+                .defaultToolCallbacks(
+                        SkillsTool.builder().addSkillsResources(skillPaths).build()
+                )
+                // SECURITY WARNING: ShellTools allows arbitrary command execution.
+                // Do not use in production without command whitelisting or proper access control.
+                .defaultTools(
+                        ShellTools.builder().build(),
+                        FileSystemTools.builder().build()
+                )
+                .defaultAdvisors(
+                        ToolCallAdvisor.builder()
+                                .conversationHistoryEnabled(true)
+                                .build(),
+                        MyLoggingAdvisor.builder()
+                                .showAvailableTools(true)
+                                .showSystemMessage(true)
+                                .build()
+                )
+                .build();
+    }
 
-            System.out.println("\nI am your assistant.\n");
+    private void runInteractiveLoop(ChatClient chatClient) {
+        System.out.println("\nI am your assistant.\n");
 
-            try (Scanner scanner = new Scanner(System.in)) {
-                while (true) {
-                    System.out.print("\n> USER: ");
-                    System.out.println("\n> ASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
-                }
+        try (Scanner scanner = new Scanner(System.in)) {
+            while (true) {
+                System.out.print("\n> USER: ");
+                System.out.println("\n> ASSISTANT: " + chatClient.prompt(scanner.nextLine()).call().content());
             }
-        };
+        }
     }
 }
