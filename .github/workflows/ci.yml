@@ -8,6 +8,121 @@ on:
 
 jobs:
   build:
-    uses: spring-ai-community/community-workflows/.github/workflows/ci-build.yml@main
-    with:
-      java-version: '17'
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Cache Maven dependencies
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Build with Maven
+        run: ./mvnw clean verify -B
+
+      - name: Run tests
+        run: ./mvnw test -B
+
+      - name: Check code style
+        run: ./mvnw checkstyle:check -B
+        continue-on-error: true
+
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: target/surefire-reports/
+
+      - name: Upload build artifacts
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: jar-artifacts
+          path: target/*.jar
+          retention-days: 7
+
+  security-audit:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Run OWASP Dependency Check
+        run: ./mvnw org.owasp:dependency-check-maven:check -B
+        continue-on-error: true
+        env:
+          SKIP_PROVIDE_DEPS: true
+
+      - name: Run Maven Enforcer
+        run: ./mvnw enforcer:enforce -B
+
+  validate:
+    name: Validate Project Structure
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Java 21
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: 'maven'
+
+      - name: Validate Maven project
+        run: ./mvnw validate -B
+
+      - name: Check for SNAPSHOT dependencies in release
+        if: github.event_name == 'pull_request'
+        run: |
+          if grep -q "SNAPSHOT" pom.xml; then
+            echo "Warning: SNAPSHOT dependencies found"
+          fi
+
+  # Summary job that aggregates all checks
+  ci-summary:
+    name: CI Summary
+    runs-on: ubuntu-latest
+    needs: [build, security-audit, validate]
+    if: always()
+
+    steps:
+      - name: Check build status
+        run: |
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed"
+            exit 1
+          fi
+          if [ "${{ needs.security-audit.result }}" != "success" ] && [ "${{ needs.security-audit.result }}" != "skipped" ]; then
+            echo "⚠️ Security audit job failed"
+          fi
+          if [ "${{ needs.validate.result }}" != "success" ]; then
+            echo "❌ Validate job failed"
+            exit 1
+          fi
+          echo "✅ All required CI checks passed"
