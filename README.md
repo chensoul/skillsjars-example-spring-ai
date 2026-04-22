@@ -53,6 +53,7 @@ This example demonstrates how to integrate [SkillsJars](https://www.skillsjars.c
 3. Load environment variables:
    ```bash
    # Using dotenv-cli
+   brew install dotenv-cli                                                                                                                                                
    dotenv -- ./mvnw spring-boot:run
 
    # Or using shell
@@ -260,7 +261,7 @@ A: The project includes a `.env.example` template file:
 
 3. **Load and run:**
    ```bash
-   # Option A: Using dotenv-cli (install: npm i -g dotenv-cli)
+   # Option A: Using dotenv-cli (install: brew install dotenv-cli )
    dotenv -- ./mvnw spring-boot:run
 
    # Option B: Using shell
