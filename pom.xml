@@ -7,7 +7,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>4.0.5</version>
+        <version>4.1.0-M2</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -128,9 +128,13 @@
                                     <version>[3.9,)</version>
                                 </requireMavenVersion>
                                 <banDuplicatePomDependencyVersions/>
+                                <!-- 当多个依赖传递引入同一个库的不同版本时，强制使用最高版本  -->
                                 <requireUpperBoundDeps>
                                     <excludes>
                                         <exclude>org.springframework.ai:*</exclude>
+                                        <exclude>io.micrometer:*</exclude>
+                                        <exclude>org.springframework.boot:*</exclude>
+                                        <exclude>org.springframework:*</exclude>
                                     </excludes>
                                 </requireUpperBoundDeps>
                             </rules>
@@ -153,7 +157,6 @@
                 </dependencies>
                 <configuration>
                     <configLocation>google_checks.xml</configLocation>
-                    <encoding>UTF-8</encoding>
                     <consoleOutput>true</consoleOutput>
                     <failsOnError>true</failsOnError>
                     <linkXRef>false</linkXRef>
