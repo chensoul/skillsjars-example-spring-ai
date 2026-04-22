@@ -34,6 +34,8 @@ public class Application {
                     .defaultToolCallbacks(
                             SkillsTool.builder().addSkillsResources(skillPaths).build()
                     )
+                    // SECURITY WARNING: ShellTools allows arbitrary command execution.
+                    // Do not use in production without command whitelisting or proper access control.
                     .defaultTools(
                             ShellTools.builder().build(),
                             FileSystemTools.builder().build()

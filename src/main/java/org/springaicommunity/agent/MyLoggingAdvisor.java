@@ -11,6 +11,8 @@ import org.springframework.ai.model.ModelOptionsUtils;
 import org.springframework.ai.model.tool.ToolCallingChatOptions;
 import org.springframework.util.StringUtils;
 
+import java.util.regex.Pattern;
+
 public class MyLoggingAdvisor implements BaseAdvisor {
 
     private final int order;
@@ -23,6 +25,9 @@ public class MyLoggingAdvisor implements BaseAdvisor {
 
     public final boolean showAssistantText;
 
+
+    private static final Pattern API_KEY_PATTERN = Pattern.compile("(?i)(api[_-]?key|key|token|secret|password|bearer)\\s*[:=]\\s*[\"']?([a-zA-Z0-9]{20,})[\"']?");
+    private static final String REDACTED_VALUE = "[REDACTED]";
 
     private MyLoggingAdvisor(int order, boolean showSystemMessage, boolean showAvailableTools, boolean showUserText, boolean showAssistantText) {
         this.order = order;
@@ -111,9 +116,16 @@ public class MyLoggingAdvisor implements BaseAdvisor {
 
     private String first(String text, int n) {
         if (text.length() <= n) {
+            return redactSensitiveData(text);
+        }
+        return redactSensitiveData(text.substring(0, n)) + "...";
+    }
+
+    private String redactSensitiveData(String text) {
+        if (text == null || text.isEmpty()) {
             return text;
         }
-        return text.substring(0, n) + "...";
+        return API_KEY_PATTERN.matcher(text).replaceAll("$1=" + REDACTED_VALUE);
     }
 
     public static Builder builder() {
