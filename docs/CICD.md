@@ -92,11 +92,13 @@ Manual workflow for releasing to Maven Central.
 |------|------|---------|
 | Compilation | Maven | Ensures code compiles |
 | Tests | Maven Surefire | Validates functionality |
-| Code Style | Checkstyle | Enforces Google Java Style |
+| Code Format | Spotless | Enforces Google Java Style (fast) |
 | Dependencies | Enforcer | Version requirements |
 | Security | Trivy | Vulnerable dependencies (fast scan) |
 
-> **Note:** Trivy replaces OWASP Dependency Check for faster scan times. OWASP is still available locally: `./mvnw dependency-check:check`
+> **Note:** 
+> - Spotless replaces Checkstyle for 2-3x faster execution with auto-fix capability
+> - Trivy replaces OWASP Dependency Check for faster scan times
 
 ## Required Secrets
 
@@ -187,6 +189,23 @@ Example `.trivyignore`:
 CVE-2021-XXXX
 ```
 
+### Spotless Format Check Fails
+
+Run locally to check and fix:
+
+```bash
+# Check format issues
+./mvnw spotless:check -X
+
+# Auto-fix all format issues
+./mvnw spotless:apply
+```
+
+IDE Integration:
+- **IntelliJ**: Install "Google Java Format" plugin
+- **Eclipse**: Built-in Google Java Format support
+- **VS Code**: Install "Language Support for Java" extension
+
 ### OWASP Dependency Check (Local Only)
 
 If running OWASP locally for deeper analysis:
@@ -194,15 +213,6 @@ If running OWASP locally for deeper analysis:
 1. Review the report in `target/dependency-check-report.html`
 2. Update vulnerable dependencies
 3. If false positive, add suppression in `dependency-check-suppressions.xml`
-
-### Checkstyle Fails
-
-Run locally to see details:
-```bash
-./mvnw checkstyle:check -X
-```
-
-Fix violations or update checkstyle configuration if needed.
 
 ### GPG Signing Fails
 
