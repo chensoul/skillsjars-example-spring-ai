@@ -83,11 +83,24 @@ skillsjars-example-spring-ai/
 │   └── MyLoggingAdvisor.java         # Custom logging Advisor
 ├── src/main/resources/
 │   └── application.properties        # Application configuration
-├── .github/workflows/
-│   └── release.yml                   # Maven Central release workflow
+├── .github/
+│   ├── ISSUE_TEMPLATE/               # Issue templates (bug, feature)
+│   ├── PULL_REQUEST_TEMPLATE.md      # PR submission template
+│   ├── workflows/
+│   │   ├── ci.yml                    # Main CI build pipeline
+│   │   ├── pr-validation.yml         # PR validation checks
+│   │   ├── publish-snapshot.yml      # Auto-publish snapshots
+│   │   └── release.yml               # Manual release workflow
+│   └── CODEOWNERS                    # Code review responsibilities
+├── docs/
+│   └── CICD.md                       # CI/CD guide and documentation
 ├── LICENSE                           # Apache 2.0 License
 ├── pom.xml                           # Maven build configuration
-└── README.md                         # Project documentation
+├── README.md                         # Project documentation
+├── CHANGELOG.md                      # Version history
+├── CONTRIBUTING.md                   # Contribution guidelines
+├── SECURITY.md                       # Security policy
+└── .editorconfig                     # Editor configuration
 ```
 
 ## Core Components
@@ -96,9 +109,9 @@ skillsjars-example-spring-ai/
 
 Main application class responsible for:
 
-- Building `ChatClient` with default tools configuration
+- Building `ChatClient` with default tools configuration (`buildChatClient()`)
 - Registering `SkillsTool`, `ShellTools`, `FileSystemTools`
-- Starting the interactive CLI loop
+- Running the interactive CLI loop (`runInteractiveLoop()`)
 
 ### MyLoggingAdvisor.java
 
@@ -107,6 +120,10 @@ Custom Spring AI Advisor for:
 - Logging user inputs and assistant responses
 - Displaying available tools
 - Showing tool calls and responses (with automatic sensitive data redaction)
+- Key methods:
+  - `before()` - Log request before sending to AI
+  - `after()` - Log response after receiving from AI
+  - `redactSensitiveData()` - Filter API keys and tokens from logs
 
 ### Configuration
 
@@ -201,12 +218,21 @@ A: Pull Requests are welcome! Please ensure:
 - Follows existing code style
 - Updates relevant documentation
 
+See [CONTRIBUTING.md](CONTRIBUTING.md) for detailed guidelines.
+
+### Q: How does the CI/CD pipeline work?
+
+A: See [docs/CICD.md](docs/CICD.md) for complete pipeline documentation.
+
 ## Related Resources
 
 - [Spring AI Official Documentation](https://docs.spring.io/spring-ai/reference/)
 - [Spring AI Agent Utils](https://github.com/spring-ai-community/spring-ai-agent-utils)
 - [SkillsJars](https://www.skillsjars.com)
 - [Anthropic Skills](https://github.com/anthropics/skills)
+- [CI/CD Guide](docs/CICD.md)
+- [Contributing Guidelines](CONTRIBUTING.md)
+- [Security Policy](SECURITY.md)
 
 ## License
 
