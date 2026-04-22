@@ -209,12 +209,6 @@
             </plugin>
 
             <plugin>
-                <groupId>org.sonatype.central</groupId>
-                <artifactId>central-publishing-maven-plugin</artifactId>
-                <version>${central-publishing-maven-plugin.version}</version>
-            </plugin>
-
-            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>
                 <version>${maven-gpg-plugin.version}</version>
@@ -223,13 +217,53 @@
     </build>
 
     <profiles>
+        <profile>
+            <id>javadoc</id>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-javadoc-plugin</artifactId>
+                        <version>${maven-javadoc-plugin.version}</version>
+                        <configuration>
+                            <detectJavaApiLink>false</detectJavaApiLink>
+                            <failOnError>false</failOnError>
+                            <doclint>none</doclint>
+                            <additionalOptions>
+                                <additionalOption>-Xdoclint:none</additionalOption>
+                            </additionalOptions>
+                            <source>${java.version}</source>
+                            <quiet>true</quiet>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <id>generate-javadocs</id>
+                                <goals>
+                                    <goal>jar</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                            <execution>
+                                <id>generate-aggregate-javadocs</id>
+                                <goals>
+                                    <goal>aggregate</goal>
+                                </goals>
+                                <phase>package</phase>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
         <!-- Release profile for Maven Central publishing -->
         <profile>
             <id>release</id>
             <build>
                 <plugins>
-                    <!-- Maven Central Publishing Plugin -->
-                    <!-- SECURITY: autoPublish=false requires manual confirmation to prevent accidental releases -->
                     <plugin>
                         <groupId>org.sonatype.central</groupId>
                         <artifactId>central-publishing-maven-plugin</artifactId>
@@ -237,7 +271,7 @@
                         <extensions>true</extensions>
                         <configuration>
                             <publishingServerId>central</publishingServerId>
-                            <autoPublish>false</autoPublish>
+                            <autoPublish>true</autoPublish>
                         </configuration>
                     </plugin>
 
@@ -259,38 +293,6 @@
                                         <arg>loopback</arg>
                                     </gpgArguments>
                                 </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Source JAR -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-source-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>attach-sources</id>
-                                <goals>
-                                    <goal>jar-no-fork</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-
-                    <!-- Javadoc JAR -->
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-javadoc-plugin</artifactId>
-                        <configuration>
-                            <failOnError>false</failOnError>
-                            <quiet>true</quiet>
-                        </configuration>
-                        <executions>
-                            <execution>
-                                <id>attach-javadocs</id>
-                                <goals>
-                                    <goal>jar</goal>
-                                </goals>
                             </execution>
                         </executions>
                     </plugin>
