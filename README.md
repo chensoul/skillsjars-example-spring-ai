@@ -5,35 +5,35 @@
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Spring AI](https://img.shields.io/badge/Spring%20AI-2.0.0--M4-blue.svg)](https://spring.io/projects/spring-ai)
 
-本项目演示了如何将 [SkillsJars](https://www.skillsjars.com) 与 [Spring AI Agent Utils](https://github.com/spring-ai-community/spring-ai-agent-utils) 集成，使 AI 代理能够通过依赖定义的方式使用各种 Agent Skills。
+This example demonstrates how to integrate [SkillsJars](https://www.skillsjars.com) with [Spring AI Agent Utils](https://github.com/spring-ai-community/spring-ai-agent-utils) to enable AI agents to use various Agent Skills through dependency-defined configuration.
 
-## 功能特性
+## Features
 
-- **SkillsJars 集成** - 通过 Maven 依赖快速集成预构建的 AI 技能
-- **Spring AI 支持** - 基于 Spring AI 2.0 构建，支持 OpenAI 兼容 API
-- **工具调用** - 支持 Shell 命令、文件系统操作、PDF 生成等技能
-- **交互式 CLI** - 命令行交互界面，支持多轮对话
-- **日志调试** - 自定义 Advisor 显示工具调用和响应详情
+- **SkillsJars Integration** - Quickly integrate pre-built AI skills via Maven dependencies
+- **Spring AI Support** - Built on Spring AI 2.0, supports OpenAI-compatible APIs
+- **Tool Calling** - Supports Shell commands, file system operations, PDF generation, and more
+- **Interactive CLI** - Command-line interface with multi-turn conversation support
+- **Logging & Debugging** - Custom Advisor displays tool calls and responses with sensitive data redaction
 
-## 技术栈
+## Tech Stack
 
-| 组件 | 版本 |
-|------|------|
+| Component | Version |
+|-----------|---------|
 | Java | 21 |
 | Spring Boot | 4.0.5 |
 | Spring AI | 2.0.0-M4 |
 | spring-ai-agent-utils | 0.7.0 |
 | SkillsJars PDF | 2026_02_25-3d59511 |
 
-## 快速开始
+## Quick Start
 
-### 前置要求
+### Prerequisites
 
 - JDK 21+
 - Maven 3.9+
-- OpenAI API Key 或兼容的 LLM API
+- OpenAI API Key or compatible LLM API
 
-### 配置环境变量
+### Configure Environment Variables
 
 ```bash
 # macOS / Linux
@@ -47,13 +47,13 @@ $env:OPENAI_API_KEY="your-api-key-here"
 $env:OPENAI_API_MODEL="gpt-4o"
 ```
 
-### 运行应用
+### Run the Application
 
 ```bash
 ./mvnw spring-boot:run
 ```
 
-启动后，您将看到交互式提示：
+After startup, you will see an interactive prompt:
 
 ```
 I am your assistant.
@@ -61,72 +61,72 @@ I am your assistant.
 > USER:
 ```
 
-### 使用示例
+### Usage Examples
 
-输入自然语言命令与 AI 交互：
+Interact with the AI using natural language commands:
 
 ```
-> USER: 使用 PDF 技能创建包含当前目录列表的 PDF 文件
+> USER: use the pdf skill to create a pdf containing the current directory listing
 
-> USER: 列出当前目录下的所有 Java 文件
+> USER: list all Java files in the current directory
 
-> USER: 读取 pom.xml 的内容
+> USER: read the contents of pom.xml
 ```
 
-## 项目结构
+## Project Structure
 
 ```
 skillsjars-example-spring-ai/
 ├── src/main/java/org/springaicommunity/agent/
-│   ├── Application.java              # 主入口和 CLI 运行器
-│   └── MyLoggingAdvisor.java         # 自定义日志 Advisor
+│   ├── Application.java              # Main entry point and CLI runner
+│   └── MyLoggingAdvisor.java         # Custom logging Advisor
 ├── src/main/resources/
-│   └── application.properties        # 应用配置
+│   └── application.properties        # Application configuration
 ├── .github/workflows/
-│   └── release.yml                   # Maven Central 发布工作流
-├── LICENSE                           # Apache 2.0 许可证
-├── pom.xml                           # Maven 构建配置
-└── README.md                         # 项目文档
+│   └── release.yml                   # Maven Central release workflow
+├── LICENSE                           # Apache 2.0 License
+├── pom.xml                           # Maven build configuration
+└── README.md                         # Project documentation
 ```
 
-## 核心组件
+## Core Components
 
 ### Application.java
 
-主应用程序类，负责：
+Main application class responsible for:
 
-- 构建 `ChatClient` 并配置默认工具
-- 注册 `SkillsTool`、`ShellTools`、`FileSystemTools`
-- 启动交互式 CLI 循环
+- Building `ChatClient` with default tools configuration
+- Registering `SkillsTool`, `ShellTools`, `FileSystemTools`
+- Starting the interactive CLI loop
 
 ### MyLoggingAdvisor.java
 
-自定义的 Spring AI Advisor，用于：
+Custom Spring AI Advisor for:
 
-- 记录用户输入和助手响应
-- 显示可用的工具列表
-- 显示工具调用和响应（自动脱敏敏感信息）
+- Logging user inputs and assistant responses
+- Displaying available tools
+- Showing tool calls and responses (with automatic sensitive data redaction)
 
-### 配置说明
+### Configuration
 
-`application.properties` 配置项：
+`application.properties` configuration items:
 
 ```properties
-# 禁用 Web 模式，使用 CLI
+# Disable web mode, use CLI
 spring.main.web-application-type=none
 
-# OpenAI 配置（通过环境变量）
+# OpenAI configuration (via environment variables)
 spring.ai.openai-sdk.base-url=${OPENAI_API_BASE_URL}
 spring.ai.openai-sdk.api-key=${OPENAI_API_KEY}
 spring.ai.openai-sdk.chat.options.model=${OPENAI_API_MODEL}
 
-# SkillsJars 技能路径
+# SkillsJars skills path
 agent.skills.paths=classpath:/META-INF/skills
 ```
 
-## 添加新技能
+## Adding New Skills
 
-1. 在 `pom.xml` 中添加 SkillsJars 依赖：
+1. Add SkillsJars dependency in `pom.xml`:
 
 ```xml
 <dependency>
@@ -136,53 +136,53 @@ agent.skills.paths=classpath:/META-INF/skills
 </dependency>
 ```
 
-2. 技能将自动被 `SkillsTool` 发现和注册
+2. Skills will be automatically discovered and registered by `SkillsTool`
 
-## 发布到 Maven Central
+## Release to Maven Central
 
-项目配置了自动发布到 Maven Central 的工作流。
+The project is configured with automated release workflow to Maven Central.
 
-### 手动发布
+### Manual Release
 
 ```bash
 ./mvnw clean deploy -P release
 ```
 
-### 使用 GitHub Actions
+### Using GitHub Actions
 
-1. 进入 Actions → Release
-2. 输入版本号（如 `0.1.0`）
-3. 运行工作流
+1. Go to Actions → Release
+2. Enter version number (e.g., `0.1.0`)
+3. Run the workflow
 
-### 所需 Secrets
+### Required Secrets
 
-| Secret | 描述 |
-|--------|------|
-| `MAVEN_USERNAME` | Sonatype Central 用户名 |
-| `MAVEN_PASSWORD` | Sonatype Central 密码 |
-| `GPG_SECRET_KEY` | GPG 私钥 |
-| `GPG_PASSPHRASE` | GPG 私钥密码 |
+| Secret | Description |
+|--------|-------------|
+| `MAVEN_USERNAME` | Sonatype Central username |
+| `MAVEN_PASSWORD` | Sonatype Central password |
+| `GPG_SECRET_KEY` | GPG private key |
+| `GPG_PASSPHRASE` | GPG private key passphrase |
 
-## 安全注意事项
+## Security Considerations
 
-> **重要**: 本项目包含用于演示的 `ShellTools`，允许执行任意 shell 命令。
+> **Important**: This project includes `ShellTools` for demonstration purposes, which allows arbitrary shell command execution.
 
-- **生产环境**: 请勿直接使用 `ShellTools`，或实施命令白名单
-- **API 密钥**: 始终使用环境变量，不要提交到版本控制
-- **日志脱敏**: `MyLoggingAdvisor` 会自动过滤日志中的敏感信息
+- **Production Use**: Do not use `ShellTools` directly in production, or implement command whitelisting
+- **API Keys**: Always use environment variables, never commit to version control
+- **Log Redaction**: `MyLoggingAdvisor` automatically filters sensitive information from logs
 
-## 常见问题
+## FAQ
 
-### Q: 支持哪些 LLM 提供商？
+### Q: Which LLM providers are supported?
 
-A: 任何 OpenAI 兼容的 API 都支持，包括：
+A: Any OpenAI-compatible API is supported, including:
 - OpenAI
 - Azure OpenAI
-- 本地模型（Ollama、vLLM 等）
+- Local models (Ollama, vLLM, etc.)
 
-### Q: 如何自定义日志级别？
+### Q: How to customize logging level?
 
-A: 修改 `MyLoggingAdvisor` 的构建器配置：
+A: Modify the `MyLoggingAdvisor` builder configuration:
 
 ```java
 MyLoggingAdvisor.builder()
@@ -193,20 +193,20 @@ MyLoggingAdvisor.builder()
     .build()
 ```
 
-### Q: 如何贡献代码？
+### Q: How to contribute code?
 
-A: 欢迎提交 Pull Request！请确保：
-- 代码通过现有测试
-- 遵循现有代码风格
-- 更新相关文档
+A: Pull Requests are welcome! Please ensure:
+- Code passes existing tests
+- Follows existing code style
+- Updates relevant documentation
 
-## 相关资源
+## Related Resources
 
-- [Spring AI 官方文档](https://docs.spring.io/spring-ai/reference/)
+- [Spring AI Official Documentation](https://docs.spring.io/spring-ai/reference/)
 - [Spring AI Agent Utils](https://github.com/spring-ai-community/spring-ai-agent-utils)
 - [SkillsJars](https://www.skillsjars.com)
 - [Anthropic Skills](https://github.com/anthropics/skills)
 
-## 许可证
+## License
 
 [Apache License 2.0](LICENSE)

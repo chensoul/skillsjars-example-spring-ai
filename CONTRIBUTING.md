@@ -1,27 +1,27 @@
-# 贡献指南
+# Contributing to SkillsJars Spring AI Example
 
-感谢您对SkillsJars Spring AI Example 项目的关注！本文档将指导您如何为项目做出贡献。
+Thank you for your interest in contributing to the SkillsJars Spring AI Example project! This document guides you through the contribution process.
 
-## 开发环境设置
+## Development Environment Setup
 
-### 1. 克隆仓库
+### 1. Clone the Repository
 
 ```bash
 git clone https://github.com/zhijunio/skillsjars-example-spring-ai.git
 cd skillsjars-example-spring-ai
 ```
 
-### 2. 验证环境
+### 2. Verify Environment
 
 ```bash
-# 检查 Java 版本
-java -version  # 需要 Java 21+
+# Check Java version
+java -version  # Requires Java 21+
 
-# 检查 Maven
-./mvnw --version  # 需要 Maven 3.9+
+# Check Maven
+./mvnw --version  # Requires Maven 3.9+
 ```
 
-### 3. 配置环境变量
+### 3. Configure Environment Variables
 
 ```bash
 export OPENAI_API_BASE_URL=https://api.openai.com/v1
@@ -29,57 +29,57 @@ export OPENAI_API_KEY=your-api-key-here
 export OPENAI_API_MODEL=gpt-4o
 ```
 
-## 开发流程
+## Development Workflow
 
-### 1. 创建分支
+### 1. Create a Branch
 
 ```bash
-# 基于最新 main 分支
+# Start from the latest main branch
 git checkout main
 git pull origin main
 
-# 创建功能分支
+# Create a feature branch
 git checkout -b feature/your-feature-name
 
-# 或创建修复分支
+# Or create a fix branch
 git checkout -b fix/issue-description
 ```
 
-### 2. 进行开发
+### 2. Make Changes
 
-- 编写代码时遵循现有代码风格
-- 为新增功能添加必要的注释
-- 确保代码通过编译和测试
+- Follow the existing code style when writing code
+- Add necessary comments for new features
+- Ensure code compiles and tests pass
 
-### 3. 提交代码
+### 3. Commit Changes
 
 ```bash
-# 查看变更
+# View changes
 git status
 git diff
 
-# 添加变更
+# Stage changes
 git add <file-name>
 
-# 提交（遵循提交信息规范）
+# Commit (follow commit message conventions)
 git commit -m "type: descriptive message"
 ```
 
-### 提交信息规范
+### Commit Message Conventions
 
-采用 [Conventional Commits](https://www.conventionalcommits.org/) 格式：
+Follow [Conventional Commits](https://www.conventionalcommits.org/) format:
 
-| 类型 | 描述 |
-|------|------|
-| `feat` | 新功能 |
-| `fix` | Bug 修复 |
-| `docs` | 文档更新 |
-| `style` | 代码格式（不影响功能） |
-| `refactor` | 重构 |
-| `test` | 测试相关 |
-| `chore` | 构建/工具配置 |
+| Type | Description |
+|------|-------------|
+| `feat` | New feature |
+| `fix` | Bug fix |
+| `docs` | Documentation update |
+| `style` | Code formatting (no functional change) |
+| `refactor` | Refactoring |
+| `test` | Test-related changes |
+| `chore` | Build/tool configuration |
 
-**示例：**
+**Examples:**
 ```
 feat: add new PDF export skill
 fix: resolve null pointer in logging advisor
@@ -87,87 +87,87 @@ docs: update README with security notes
 refactor: simplify ChatClient configuration
 ```
 
-### 4. 推送并创建 PR
+### 4. Push and Create PR
 
 ```bash
-# 推送分支
+# Push branch
 git push origin feature/your-feature-name
 
-# 使用 gh CLI 创建 PR（推荐）
+# Create PR using gh CLI (recommended)
 gh pr create --title "feat: your feature description" --body "Description of changes"
 
-# 或访问 GitHub 网页创建
+# Or create via GitHub web interface
 ```
 
-## Pull Request 指南
+## Pull Request Guidelines
 
-### PR 标题
+### PR Title
 
-- 简洁描述变更内容
-- 遵循提交信息规范
-- 示例：`feat: add support for Azure OpenAI`
+- Briefly describe the changes
+- Follow commit message conventions
+- Example: `feat: add support for Azure OpenAI`
 
-### PR 描述
+### PR Description
 
-使用以下模板：
+Use the following template:
 
 ```markdown
-## 变更摘要
-简要描述此 PR 的目的
+## Summary
+Briefly describe the purpose of this PR
 
-## 变更详情
-- [ ] 新增功能 X
-- [ ] 修复问题 Y
-- [ ] 更新文档 Z
+## Changes
+- [ ] New feature X
+- [ ] Fix for issue Y
+- [ ] Documentation update Z
 
-## 测试方法
-- [ ] 已添加单元测试
-- [ ] 已进行手动测试
-- [ ] 现有测试通过
+## Testing
+- [ ] Unit tests added/updated
+- [ ] Manual testing performed
+- [ ] Existing tests pass
 
-## 相关 Issue
+## Related Issue
 Fixes #<issue-number>
 ```
 
-### 审查流程
+### Review Process
 
-1. 项目维护者将审查代码
-2. 可能需要修改以满足要求
-3. 审查通过后合并到 main 分支
+1. Project maintainers will review the code
+2. Changes may be requested to meet requirements
+3. After approval, changes are merged to main branch
 
-## 报告问题
+## Reporting Issues
 
-### Bug 报告
+### Bug Reports
 
-使用 [GitHub Issues](https://github.com/zhijunio/skillsjars-example-spring-ai/issues)，包含：
+Use [GitHub Issues](https://github.com/zhijunio/skillsjars-example-spring-ai/issues) and include:
 
-- **问题描述**：清晰描述问题
-- **复现步骤**：如何触发问题
-- **预期行为**：应该发生什么
-- **实际行为**：实际发生了什么
-- **环境信息**：Java 版本、OS、依赖版本
+- **Description**: Clear description of the problem
+- **Reproduction Steps**: How to trigger the issue
+- **Expected Behavior**: What should happen
+- **Actual Behavior**: What actually happened
+- **Environment**: Java version, OS, dependency versions
 
-### 功能建议
+### Feature Requests
 
-- 描述功能的使用场景
-- 说明为什么需要这个功能
-- 提供可能的实现思路（可选）
+- Describe the use case for the feature
+- Explain why this feature is needed
+- Provide implementation ideas (optional)
 
-## 代码风格
+## Code Style
 
-### Java 编码规范
+### Java Coding Standards
 
-- 遵循 [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
-- 使用 4 空格缩进
-- 类名使用 PascalCase
-- 方法/变量使用 camelCase
-- 常量使用 UPPER_SNAKE_CASE
+- Follow [Google Java Style Guide](https://google.github.io/styleguide/javaguide.html)
+- Use 4-space indentation
+- Class names use PascalCase
+- Method/variable names use camelCase
+- Constants use UPPER_SNAKE_CASE
 
-### 示例代码
+### Example Code
 
 ```java
 /**
- * 自定义日志 Advisor，用于记录聊天请求和响应。
+ * Custom logging Advisor for recording chat requests and responses.
  */
 public class MyLoggingAdvisor implements BaseAdvisor {
 
@@ -183,62 +183,63 @@ public class MyLoggingAdvisor implements BaseAdvisor {
 }
 ```
 
-## 测试要求
+## Testing Requirements
 
-### 单元测试
+### Unit Tests
 
-- 新增工具类应包含单元测试
-- 使用 JUnit 5 和 Mockito
-- 测试覆盖率应合理
+- New utility classes should include unit tests
+- Use JUnit 5 and Mockito
+- Maintain reasonable test coverage
 
-### 运行测试
+### Running Tests
 
 ```bash
-# 运行所有测试
+# Run all tests
 ./mvnw test
 
-# 运行特定测试类
+# Run specific test class
 ./mvnw test -Dtest=MyLoggingAdvisorTest
 
-# 生成覆盖率报告
+# Generate coverage report
 ./mvnw clean test jacoco:report
 ```
 
-## 发布流程
+## Release Process
 
-### 发布新版本
+### Releasing a New Version
 
-1. 更新 `pom.xml` 版本号
-2. 更新 `CHANGELOG.md`
-3. 创建 Git 标签
-4. 运行 Release 工作流
+1. Update version in `pom.xml`
+2. Update `CHANGELOG.md`
+3. Create Git tag
+4. Run Release workflow
 
-### 版本命名
+### Version Naming
 
-遵循 [Semantic Versioning](https://semver.org/)：
+Follow [Semantic Versioning](https://semver.org/):
 
 ```
-主版本号。次版本号。修订号
-  ↑        ↑        ↑
-  重大变化  新功能   Bug 修复
+MAJOR.MINOR.PATCH
+  ↑      ↑      ↑
+  Major  Minor  Patch
+  Change Feature Fix
 ```
 
-## 行为准则
+## Code of Conduct
 
-- 保持专业和尊重
-- 欢迎不同观点和经验
-- 专注于建设性反馈
-- 帮助新手开发者
+- Be professional and respectful
+- Welcome different perspectives and experiences
+- Focus on constructive feedback
+- Help new developers
 
-## 许可证
+## License
 
-通过贡献代码，您同意根据 [Apache License 2.0](LICENSE) 授权您的贡献。
+By contributing code, you agree to license your contribution under the [Apache License 2.0](LICENSE).
 
-## 联系方式
+## Contact
 
-- GitHub Issues: [提问或讨论](https://github.com/zhijunio/skillsjars-example-spring-ai/issues)
+- GitHub Issues: [Ask questions or discuss](https://github.com/zhijunio/skillsjars-example-spring-ai/issues)
 - Email: zhijun.lab@gmail.com
 
 ---
 
-感谢您的贡献！
+Thank you for contributing!

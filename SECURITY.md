@@ -1,118 +1,118 @@
-# 安全策略
+# Security Policy
 
-## 报告安全漏洞
+## Reporting a Vulnerability
 
-我们非常重视项目的安全性。如果您发现任何安全漏洞，请负责任地披露。
+We take the security of this project seriously. If you discover any security vulnerabilities, please disclose them responsibly.
 
-### 如何报告
+### How to Report
 
-请通过以下方式之一报告安全漏洞：
+Please report security vulnerabilities through one of the following channels:
 
-1. **GitHub Private Vulnerability Reporting**（推荐）
-   - 访问 https://github.com/zhijunio/skillsjars-example-spring-ai/security/advisories
-   - 点击 "Report a vulnerability"
-   - 填写详细信息
+1. **GitHub Private Vulnerability Reporting** (Recommended)
+   - Visit https://github.com/zhijunio/skillsjars-example-spring-ai/security/advisories
+   - Click "Report a vulnerability"
+   - Fill in the details
 
-2. **电子邮件**
-   - 发送邮件至：zhijun.lab@gmail.com
-   - 邮件标题：`[Security] 简短描述`
+2. **Email**
+   - Send an email to: zhijun.lab@gmail.com
+   - Subject line: `[Security] Brief description`
 
-### 报告应包含的信息
+### Information to Include
 
-为了帮助我们更好地理解和解决漏洞，请提供：
+To help us better understand and resolve the vulnerability, please provide:
 
-- 漏洞的类型和描述
-- 完整的复现步骤
-- 受影响的版本
-- 潜在的利用方式
-- 建议的修复方案（如有）
+- Type and description of the vulnerability
+- Complete reproduction steps
+- Affected versions
+- Potential exploitation methods
+- Suggested fix (if available)
 
-### 响应时间
+### Response Timeline
 
-- **初步响应**: 1-3 个工作日
-- **状态更新**: 每周一次
-- **修复目标**: 根据严重程度
-  - Critical: 24-72 小时
-  - High: 1 周
-  - Medium: 2 周
-  - Low: 下次常规发布
+- **Initial Response**: 1-3 business days
+- **Status Updates**: Weekly
+- **Fix Target**: Based on severity
+  - Critical: 24-72 hours
+  - High: 1 week
+  - Medium: 2 weeks
+  - Low: Next regular release
 
-### 披露政策
+### Disclosure Policy
 
-- 请不要在修复前公开披露漏洞
-- 我们将在修复后发布安全公告
-- 报告者将在安全公告中被感谢（如愿意）
+- Please do not publicly disclose vulnerabilities before they are fixed
+- We will publish a security advisory after the fix
+- Reporters will be acknowledged in the security advisory (if willing)
 
-## 当前安全状态
+## Current Security Status
 
-### 已知问题
+### Known Issues
 
-| CVE | 严重程度 | 状态 | 修复版本 |
-|-----|----------|------|----------|
+| CVE | Severity | Status | Fixed Version |
+|-----|----------|--------|---------------|
 | - | - | - | - |
 
-### 安全依赖
+### Security Dependencies
 
-我们使用以下工具确保依赖安全：
+We use the following tools to ensure dependency security:
 
-- **Maven Dependency Check**: 自动扫描已知漏洞
-- **Renovate**: 自动更新依赖到安全版本
+- **Maven Dependency Check**: Automatically scans for known vulnerabilities
+- **Renovate**: Automatically updates dependencies to secure versions
 
-## 安全最佳实践
+## Security Best Practices
 
-### 开发者指南
+### Developer Guidelines
 
-1. **API 密钥管理**
-   - 永远不要将 API 密钥提交到版本控制
-   - 使用环境变量或安全的密钥管理服务
-   - 定期轮换密钥
+1. **API Key Management**
+   - Never commit API keys to version control
+   - Use environment variables or secure key management services
+   - Rotate keys regularly
 
-2. **依赖管理**
-   - 定期更新依赖到最新安全版本
-   - 审查依赖的许可证
-   - 避免使用已停止维护的库
+2. **Dependency Management**
+   - Regularly update dependencies to the latest secure versions
+   - Review dependency licenses
+   - Avoid using unmaintained libraries
 
-3. **代码审查**
-   - 所有代码更改必须经过审查
-   - 使用静态分析工具
-   - 遵循安全编码指南
+3. **Code Review**
+   - All code changes must be reviewed
+   - Use static analysis tools
+   - Follow secure coding guidelines
 
-4. **日志和监控**
-   - 不要在日志中记录敏感信息
-   - 实现适当的错误处理
-   - 监控异常行为
+4. **Logging and Monitoring**
+   - Do not log sensitive information
+   - Implement proper error handling
+   - Monitor for anomalous behavior
 
-### 用户指南
+### User Guidelines
 
-1. **ShellTools 使用**
-   - 本项目包含 `ShellTools` 用于演示
-   - 生产环境应禁用或实施命令白名单
-   - 不要在不受信任的环境中运行
+1. **ShellTools Usage**
+   - This project includes `ShellTools` for demonstration purposes
+   - Disable in production or implement command whitelisting
+   - Do not run in untrusted environments
 
-2. **API 密钥**
-   - 使用具有最小权限的 API 密钥
-   - 定期轮换密钥
-   - 监控异常 API 使用
+2. **API Keys**
+   - Use API keys with minimal permissions
+   - Rotate keys regularly
+   - Monitor for unusual API usage
 
-## 版本支持
+## Version Support
 
-| 版本 | 支持状态 | 安全更新支持 |
-|------|----------|--------------|
-| 最新 | ✅ 活跃支持 | ✅ |
-| 上一版本 | ✅ 活跃支持 | ✅ |
-| 更早版本 | ❌ 停止支持 | ❌ |
+| Version | Support Status | Security Update Support |
+|---------|----------------|-------------------------|
+| Latest | ✅ Active | ✅ |
+| Previous | ✅ Active | ✅ |
+| Older | ❌ End of Life | ❌ |
 
-## 安全更新日志
+## Security Changelog
 
-安全相关的更新将在 [CHANGELOG.md](CHANGELOG.md) 的 Security 部分记录。
+Security-related changes are documented in the Security section of [CHANGELOG.md](CHANGELOG.md).
 
-## 联系
+## Contact
 
-安全问题请联系：
+For security concerns, please contact:
 
 - Email: zhijun.lab@gmail.com
 - GitHub Security Advisories: https://github.com/zhijunio/skillsjars-example-spring-ai/security/advisories
 
 ---
 
-感谢您帮助保持项目安全！
+Thank you for helping keep this project secure!

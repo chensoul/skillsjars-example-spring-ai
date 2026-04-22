@@ -1,65 +1,65 @@
-## 变更摘要
+## Summary
 
-<!-- 简要描述此 PR 的目的 -->
+<!-- Briefly describe the purpose of this PR -->
 
-## 变更类型
+## Change Type
 
-<!-- 选择所有适用的选项 -->
+<!-- Select all that apply -->
 
-- [ ] 🐛 Bug 修复
-- [ ] ✨ 新功能
-- [ ] 📝 文档更新
-- [ ] ♻️ 代码重构
-- [ ] ⚡ 性能改进
-- [ ] 🔒 安全修复
-- [ ] 🧪 测试
-- [ ] 🔧 配置变更
-- [ ] 📦 依赖更新
-- [ ] 🚀 CI/CD 改进
+- [ ] 🐛 Bug fix
+- [ ] ✨ New feature
+- [ ] 📝 Documentation update
+- [ ] ♻️ Code refactoring
+- [ ] ⚡ Performance improvement
+- [ ] 🔒 Security fix
+- [ ] 🧪 Tests
+- [ ] 🔧 Configuration change
+- [ ] 📦 Dependency update
+- [ ] 🚀 CI/CD improvement
 
-## 变更详情
+## Changes
 
-<!-- 使用项目符号列表描述具体变更 -->
+<!-- Use bullet points to describe specific changes -->
 
 - 
 - 
 - 
 
-## 测试方法
+## Testing
 
-<!-- 描述如何测试这些变更 -->
+<!-- Describe how these changes were tested -->
 
-- [ ] 已添加/更新单元测试
-- [ ] 已进行手动测试
-- [ ] 现有测试通过
+- [ ] Unit tests added/updated
+- [ ] Manual testing performed
+- [ ] Existing tests pass
 
-### 测试步骤
+### Test Steps
 
 1. 
 2. 
 3. 
 
-## 相关 Issue
+## Related Issue
 
-<!-- 如果此 PR 解决了某个 Issue，请使用 "Fixes #123" 格式 -->
+<!-- If this PR fixes an issue, use "Fixes #123" format -->
 
 Fixes #
 
-## 检查清单
+## Checklist
 
-<!-- 确认所有项目都已完成 -->
+<!-- Confirm all items are complete -->
 
-- [ ] 代码遵循项目代码风格
-- [ ] 已进行自审查
-- [ ] 已添加必要的注释
-- [ ] 已更新相关文档
-- [ ] 没有引入新的警告
-- [ ] 提交信息遵循约定格式
+- [ ] Code follows project code style
+- [ ] Self-review performed
+- [ ] Necessary comments added
+- [ ] Related documentation updated
+- [ ] No new warnings introduced
+- [ ] Commit messages follow conventions
 
-## 截图（如适用）
+## Screenshots (if applicable)
 
-<!-- 如果变更涉及 UI 或视觉变化，请添加截图 -->
+<!-- Add screenshots if changes involve UI or visual changes -->
 
-## 其他上下文
+## Additional Context
 
-<!-- 在此处添加任何额外的上下文信息 -->
+<!-- Add any additional context information here -->

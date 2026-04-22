@@ -1,30 +1,30 @@
 ---
-name: 功能建议
-description: 为这个项目提出新功能或改进建议
+name: Feature Request
+description: Suggest new features or improvements for this project
 title: "[FEAT] "
 labels: ["enhancement"]
 ---
 
-## 问题陈述
+## Problem Statement
 
-您的功能建议与什么问题相关？清晰简洁地描述问题是什么。
+What problem is your feature request related to? A clear and concise description of the problem.
 
-## 建议的解决方案
+## Proposed Solution
 
-清晰简洁地描述您希望发生的情况。
+A clear and concise description of what you want to happen.
 
-## 替代方案
+## Alternative Solutions
 
-您考虑过的替代解决方案或功能的清晰简洁描述。
+A clear and concise description of any alternative solutions or features you've considered.
 
-## 使用场景
+## Use Cases
 
-描述此功能适用的具体场景。
+Describe specific scenarios where this feature would be applicable.
 
-## 实现建议（可选）
+## Implementation Suggestions (Optional)
 
-如果您有任何关于如何实现这个功能的想法，请在此处描述。
+If you have any ideas on how to implement this feature, please describe them here.
 
-## 其他上下文
+## Additional Context
 
-在此处添加有关功能请求的任何其他上下文或截图。
+Add any other context or screenshots about the feature request here.

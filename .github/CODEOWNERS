@@ -1,22 +1,22 @@
 # GitHub CODEOWNERS
-# 定义谁负责审查某些文件或目录的更改
-# 文档：https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-codeowners
+# Defines who is responsible for reviewing changes to certain files or directories
+# Documentation: https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/about-codeowners
 
-# 默认所有者（整个仓库）
+# Default owner (entire repository)
 * @zhijunio
 
-# Java 源代码
+# Java source code
 src/main/java/ @zhijunio
 
-# 构建配置
+# Build configuration
 pom.xml @zhijunio
 
-# GitHub Actions 工作流
+# GitHub Actions workflows
 .github/workflows/ @zhijunio
 
-# 文档
+# Documentation
 *.md @zhijunio
 
-# 发布配置
+# Release configuration
 .github/ISSUE_TEMPLATE/ @zhijunio
 .github/PULL_REQUEST_TEMPLATE.md @zhijunio

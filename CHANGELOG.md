@@ -1,57 +1,55 @@
-# 变更日志
+# Changelog
 
-本文件记录项目的所有重要变更。
+All notable changes to this project will be documented in this file.
 
-格式基于 [Keep a Changelog](https://keepachangelog.com/)，遵循 [语义化版本](https://semver.org/)。
+The format is based on [Keep a Changelog](https://keepachangelog.com/), and this project adheres to [Semantic Versioning](https://semver.org/).
 
-## [未发布]
+## [Unreleased]
 
 ### Added
-- 初始版本
-- SkillsJars PDF 技能集成
-- Spring AI Agent Utils 集成
-- 自定义 `MyLoggingAdvisor` 用于日志调试
-- 交互式 CLI 界面
-- `ShellTools` 和 `FileSystemTools` 支持
-- Maven Central 发布工作流
-- Apache 2.0 许可证
+- Initial release
+- SkillsJars PDF skill integration
+- Spring AI Agent Utils integration
+- Custom `MyLoggingAdvisor` for logging and debugging
+- Interactive CLI interface
+- `ShellTools` and `FileSystemTools` support
+- Maven Central release workflow
+- Apache 2.0 License
 
 ### Changed
-- 更新 Java 版本从 17 到 21（与 `.sdkmanrc` 一致）
-- 将 Maven Central 发布的 `autoPublish` 从 `true` 改为 `false`
-- `MyLoggingAdvisor` 添加敏感信息脱敏功能
-- 完善 README.md 文档
+- Updated Java version from 17 to 21 (to match `.sdkmanrc`)
+- Changed Maven Central `autoPublish` from `true` to `false`
+- Added sensitive data redaction in `MyLoggingAdvisor`
+- Improved README.md documentation
 
 ### Fixed
-- 修复 Java 版本配置不一致问题
-- 修复日志可能泄露敏感信息的安全问题
-- 添加 `ShellTools` 安全警告注释
+- Fixed Java version configuration mismatch
+- Fixed security issue where logs could leak sensitive information
+- Added security warning comment for `ShellTools`
 
 ### Security
-- 添加 API key、token 等敏感信息的日志脱敏
-- 添加 `ShellTools` 安全使用说明
-- 完善发布流程的权限控制
+- Added log redaction for API keys, tokens, and other sensitive data
+- Added security usage notes for `ShellTools`
+- Improved permission control in release process
 
 ---
 
-## 版本说明
+## Version Numbering
 
-### 版本编号规则
+- **Major**: Breaking architectural changes or incompatible API modifications
+- **Minor**: New features, backward compatible
+- **Patch**: Bug fixes and minor improvements
 
-- **主版本号**：重大架构变更或不兼容的 API 修改
-- **次版本号**：新功能，向后兼容
-- **修订号**：Bug 修复和小改进
+## Release Process
 
-### 发布流程
-
-1. 更新此文件
-2. 更新 `pom.xml` 版本号
-3. 创建 Git 标签
-4. 运行 GitHub Actions Release 工作流
+1. Update this file
+2. Update version in `pom.xml`
+3. Create Git tag
+4. Run GitHub Actions Release workflow
 
 ---
 
-## 链接
+## Links
 
 - [GitHub Releases](https://github.com/zhijunio/skillsjars-example-spring-ai/releases)
 - [Maven Central](https://central.sonatype.com/artifact/io.zhijun/skillsjars-example-spring-ai)
