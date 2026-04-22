@@ -4,6 +4,7 @@
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://adoptium.net/)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.0.5-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Spring AI](https://img.shields.io/badge/Spring%20AI-2.0.0--M4-blue.svg)](https://spring.io/projects/spring-ai)
+[![CI](https://github.com/zhijunio/skillsjars-example-spring-ai/actions/workflows/ci.yml/badge.svg)](https://github.com/zhijunio/skillsjars-example-spring-ai/actions/workflows/ci.yml)
 
 This example demonstrates how to integrate [SkillsJars](https://www.skillsjars.com) with [Spring AI Agent Utils](https://github.com/spring-ai-community/spring-ai-agent-utils) to enable AI agents to use various Agent Skills through dependency-defined configuration.
 

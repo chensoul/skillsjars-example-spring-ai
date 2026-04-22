@@ -7,30 +7,53 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/), and this
 ## [Unreleased]
 
 ### Added
-- Initial release
-- SkillsJars PDF skill integration
-- Spring AI Agent Utils integration
-- Custom `MyLoggingAdvisor` for logging and debugging
-- Interactive CLI interface
-- `ShellTools` and `FileSystemTools` support
-- Maven Central release workflow
-- Apache 2.0 License
+- CI/CD pipelines with GitHub Actions
+  - Main CI build with tests and security audit
+  - PR validation with title format checking
+  - Automatic SNAPSHOT publishing to Maven Central
+  - Manual release workflow with GPG signing
+- Quality gates
+  - Maven Enforcer for version requirements
+  - Checkstyle for code style validation
+  - OWASP Dependency Check for security scanning
+- Documentation
+  - Comprehensive CI/CD guide (`docs/CICD.md`)
+  - Contributing guidelines (`CONTRIBUTING.md`)
+  - Security policy (`SECURITY.md`)
+  - Code of conduct
+- GitHub templates
+  - Issue templates (bug report, feature request)
+  - Pull request template
+  - CODEOWNERS configuration
+- `.editorconfig` for consistent editor settings
 
 ### Changed
-- Updated Java version from 17 to 21 (to match `.sdkmanrc`)
-- Changed Maven Central `autoPublish` from `true` to `false`
-- Added sensitive data redaction in `MyLoggingAdvisor`
-- Improved README.md documentation
+- **Breaking**: Updated minimum Java version from 17 to 21
+- Refactored `Application` class for better separation of concerns
+  - Extracted `buildChatClient()` method
+  - Extracted `runInteractiveLoop()` method
+- Simplified `MyLoggingAdvisor` internal structure
+  - Consolidated field declarations
+  - Streamlined Builder pattern formatting
+- Updated all documentation to English
+- Changed Maven Central `autoPublish` from `true` to `false` for safety
 
 ### Fixed
-- Fixed Java version configuration mismatch
-- Fixed security issue where logs could leak sensitive information
-- Added security warning comment for `ShellTools`
+- Java version configuration mismatch between `pom.xml` and `.sdkmanrc`
+- Security issue where logs could leak sensitive information (API keys, tokens)
+- Redundant null checks in `MyLoggingAdvisor.redactSensitiveData()`
+- Nested conditionals in `MyLoggingAdvisor.after()` method
 
 ### Security
 - Added log redaction for API keys, tokens, and other sensitive data
-- Added security usage notes for `ShellTools`
-- Improved permission control in release process
+- Added security warning for `ShellTools` arbitrary command execution
+- Improved release process with manual confirmation step
+- Added OWASP Dependency Check to CI pipeline
+- Configured GitHub Secrets for sensitive credentials
+
+### Removed
+- Unnecessary local variable assignments in Builder patterns
+- Excessive blank lines in class declarations
 
 ---
 
